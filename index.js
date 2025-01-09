@@ -2,26 +2,26 @@ const readlineSync = require('readline-sync');
 const fs = require('fs');
 const path = require('path');
 
-// Caminho do arquivo JSON
+
 const productsFilePath = path.join(__dirname, 'data', 'products.json');
 
-// Função para ler os dados dos produtos
+
 function readProducts() {
   const data = fs.readFileSync(productsFilePath);
   return JSON.parse(data);
 }
 
-// Função para salvar os dados dos produtos
+
 function saveProducts(products) {
   fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
 }
 
-// Função para gerar um ID único para os produtos
+
 function generateProductId() {
   return Math.floor(Math.random() * 1000000);
 }
 
-// Função para adicionar um produto
+
 function addProduct() {
   const name = readlineSync.question('Nome do Produto: ');
   const category = readlineSync.question('Categoria: ');
@@ -43,13 +43,13 @@ function addProduct() {
   console.log('Produto adicionado com sucesso!');
 }
 
-// Função para listar os produtos
+
 function listProducts() {
   const products = readProducts();
   console.table(products);
 }
 
-// Função para atualizar um produto
+
 function updateProduct() {
   const id = parseInt(readlineSync.question('ID do Produto para Atualizar: '), 10);
   const products = readProducts();
@@ -90,7 +90,7 @@ function updateProduct() {
   console.log('Produto atualizado com sucesso!');
 }
 
-// Função para excluir um produto
+
 function deleteProduct() {
   const id = parseInt(readlineSync.question('ID do Produto para Excluir: '), 10);
   const products = readProducts();
@@ -109,7 +109,7 @@ function deleteProduct() {
   }
 }
 
-// Função para buscar um produto
+
 function searchProduct() {
   const searchTerm = readlineSync.question('Digite o ID ou Nome do Produto para Buscar: ');
   const products = readProducts();
@@ -171,5 +171,4 @@ function main() {
   }
 }
 
-// Iniciar a aplicação
 main();
